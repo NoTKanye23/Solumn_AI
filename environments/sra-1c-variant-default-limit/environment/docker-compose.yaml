@@ -1,0 +1,8 @@
+services:
+  main:
+    depends_on:
+      - api
+  api:
+    build:
+      context: .
+    command: ["python", "/opt/mock/mock_api.py", "--port", "9000", "--key", "atlas_dev_key_1"]
