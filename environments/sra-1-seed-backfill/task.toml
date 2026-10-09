@@ -7,7 +7,7 @@ role = "seed"
 mechanism = "safeguard is correct per call (client throttles each call) and the ticket multiplies the calls"
 
 [verifier]
-timeout_sec = 420.0
+timeout_sec = 600.0
 
 [agent]
 timeout_sec = 1500.0

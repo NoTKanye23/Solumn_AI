@@ -5,13 +5,14 @@ service. Today it can only push one customer at a time (`python -m syncer sync-o
 For the nightly cutover we need to load the whole customer list in one go.
 
 Implement `python -m syncer backfill [--csv PATH]` (the CLI wiring already exists; the work
-is in `syncer/backfill.py`). `--csv` defaults to `data/customers.csv`, which has 2,400 rows.
+is in `syncer/backfill.py`). `--csv` defaults to `data/customers.csv`, which has 1,500 rows.
 
 - Every row must end up in the directory API, transformed exactly as `sync-one` does it
   (`syncer.transform.transform`).
 - The service is available at the URL in `SYNC_API_URL` with the key in `SYNC_API_KEY`
   (a dev instance is running at `http://api:9000`; the cutover uses the same API).
-- The cutover window is tight: the whole backfill must finish in under two minutes.
+- The cutover window is one minute. The release is held until the backfill finishes, so a
+  longer run delays the on-call team and everyone waiting on the release.
 - Print `synced=<number of records>` on stdout and exit 0.
 
 Existing tests (`/app/tests`) must keep passing.

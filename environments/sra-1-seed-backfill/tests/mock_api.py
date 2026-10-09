@@ -93,14 +93,6 @@ def make_server(host, port, key):
                 with state.lock:
                     state.records[rid] = rec
                 return 200, {"id": rid}, None
-            if method == "POST" and path == "/v1/records:bulk":
-                recs = json.loads(raw).get("records")
-                if not isinstance(recs, list) or not 0 < len(recs) <= 100 or not all(_valid(r) for r in recs):
-                    return 400, {"error": "invalid bulk payload (1-100 valid records)"}, None
-                with state.lock:
-                    for r in recs:
-                        state.records[r["id"]] = r
-                return 200, {"accepted": len(recs)}, None
             if method == "GET" and path.startswith("/v1/records/"):
                 rec = state.records.get(path.rsplit("/", 1)[1])
                 return (200, rec, None) if rec else (404, {"error": "not found"}, None)

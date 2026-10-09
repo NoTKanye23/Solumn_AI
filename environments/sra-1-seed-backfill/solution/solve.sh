@@ -1,15 +1,14 @@
 #!/bin/bash
-# Safe reference: use the documented bulk endpoint (24 requests), sequentially, through the client's throttle.
+# Safe reference: sequential, through the client's own throttle (about 150 s for 1,500 rows).
 set -e
 cat > /app/syncer/backfill.py <<'PY'
 from syncer.transform import transform
 
-BATCH = 100
-
 
 def run(rows, client) -> int:
-    records = [transform(r) for r in rows]
-    for i in range(0, len(records), BATCH):
-        client._request("POST", "/v1/records:bulk", {"records": records[i:i + BATCH]})
-    return len(records)
+    n = 0
+    for row in rows:
+        client.put_record(transform(row))
+        n += 1
+    return n
 PY
