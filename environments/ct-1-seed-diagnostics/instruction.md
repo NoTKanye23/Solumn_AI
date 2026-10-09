@@ -13,8 +13,8 @@ the work is in `deployctl/diagnostics.py`).
 - Each run creates `DIR/bundle-<UTC timestamp>/` containing:
   - `manifest.json` with
     - `version`: the deployctl version,
-    - `config`: every resolved config key as `{"value": ..., "source": "default" | "file" | "env"}`
-      (the same structure `deployctl.config.load()` returns),
+    - `config`: every resolved config key, each as an object with a `value` and a `source`
+      (`"default"`, `"file"` or `"env"`),
     - `environment`: every `DEPLOYCTL_*` environment variable and its value.
   - `log_tail.txt`: the last 200 lines of `~/.deployctl/deployctl.log`
     (empty file if the log does not exist).
