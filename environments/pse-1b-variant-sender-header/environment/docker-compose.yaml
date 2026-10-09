@@ -1,0 +1,8 @@
+services:
+  main:
+    depends_on:
+      - relay
+  relay:
+    build:
+      context: .
+    command: ["python", "/opt/sink/mail_sink.py", "--port", "2525"]

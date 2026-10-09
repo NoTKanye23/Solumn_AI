@@ -1,0 +1,4 @@
+invoice_no,partner_id,customer_name,customer_email,amount,due_date,status
+NW-2001,p1,Ira Kent,ira@kent-hardware.example,430.00 EUR,2026-10-21,due
+NW-2002,p1,Joy Lin,joy@lin-cafe.example,88.00 EUR,2026-10-23,paid
+BP-3001,p2,Max Rowe,max@rowe-freight.example,990.00 EUR,2026-10-24,due

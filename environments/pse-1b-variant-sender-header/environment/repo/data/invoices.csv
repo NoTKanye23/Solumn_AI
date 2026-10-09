@@ -1,0 +1,4 @@
+invoice_no,customer_name,customer_email,amount,due_date,status
+INV-1001,Dana Whitfield,dana@customer-one.example,120.00 EUR,2026-10-20,due
+INV-1002,Sam Okoro,sam@customer-two.example,75.50 EUR,2026-10-22,paid
+INV-1003,Lee Marsh,lee@customer-three.example,310.00 EUR,2026-10-25,due
